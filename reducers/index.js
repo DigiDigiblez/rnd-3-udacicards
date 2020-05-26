@@ -5,7 +5,7 @@ import {
   RECEIVE_DECK_ENTRIES
 } from "../actions";
 
-function entries(state = {}, action) {
+const entries = (state = {}, action) => {
   switch (action.type) {
     case RECEIVE_DECK_ENTRIES:
       return {
@@ -50,6 +50,6 @@ function entries(state = {}, action) {
     default:
       return state;
   }
-}
+};
 
 export default entries;

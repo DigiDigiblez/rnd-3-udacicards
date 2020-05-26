@@ -3,7 +3,7 @@ import { LinearGradient } from "expo-linear-gradient";
 import React from "react";
 import { StyleSheet, Text, TouchableHighlight, View } from "react-native";
 
-import { colorPrimary, white } from "../../../utils/colors";
+import { UDACITY_BLUE, WHITE } from "../../../utils/colors";
 
 export default function Deck({ deck, onPress }) {
   const { title, questions } = deck;
@@ -13,7 +13,7 @@ export default function Deck({ deck, onPress }) {
     <View style={styles.card}>
       <TouchableHighlight onPress={onPress}>
         <LinearGradient
-          colors={["#24a0ed", colorPrimary]}
+          colors={["#24a0ed", UDACITY_BLUE]}
           style={{
             padding: 15,
             justifyContent: "center",
@@ -23,10 +23,10 @@ export default function Deck({ deck, onPress }) {
         >
           <Text style={styles.title}>{title}</Text>
 
-          <Text style={{ color: white, fontSize: 16 }}>
+          <Text style={{ color: WHITE, fontSize: 16 }}>
             {count} {count === 0 || count > 1 ? "flashcards" : "flashcard"}
           </Text>
-          <Ionicons name="md-albums" size={30} color="white" />
+          <Ionicons name="md-albums" size={30} color={WHITE} />
         </LinearGradient>
       </TouchableHighlight>
     </View>
@@ -35,7 +35,7 @@ export default function Deck({ deck, onPress }) {
 
 const styles = StyleSheet.create({
   card: {
-    borderColor: white,
+    borderColor: WHITE,
     borderWidth: 1,
     borderRadius: 4,
     marginBottom: 20,
@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 24,
-    color: white,
+    color: WHITE,
     fontWeight: "700",
     marginBottom: 10
   }

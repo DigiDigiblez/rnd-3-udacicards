@@ -2,7 +2,7 @@ import { Ionicons } from "@expo/vector-icons";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import React from "react";
 
-import { colorPrimary } from "../../../utils/colors";
+import { GRAY, UDACITY_BLUE } from "../../../utils/colors";
 import CreateDeck from "../../pages/CreateDeck/CreateDeck";
 import DeckList from "../DeckList/DeckList";
 
@@ -24,8 +24,8 @@ class Navigator extends React.Component {
           }
         })}
         tabBarOptions={{
-          activeTintColor: colorPrimary,
-          inactiveTintColor: "gray"
+          activeTintColor: UDACITY_BLUE,
+          inactiveTintColor: GRAY
         }}
         initialRouteName="DeckList"
       >

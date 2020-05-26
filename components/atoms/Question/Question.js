@@ -8,7 +8,7 @@ import {
 } from "react-native";
 import CardFlip from "react-native-card-flip";
 
-import { colorPrimary } from "../../../utils/colors";
+import { UDACITY_BLUE } from "../../../utils/colors";
 
 export default class Question extends Component {
   render() {
@@ -36,7 +36,7 @@ export default class Question extends Component {
         </CardFlip>
 
         <Text style={{ color: "lightgray", margin: 10 }}>
-          Tap the card to flip between question and answer
+          Tap the flashcard to flip it!
         </Text>
       </View>
     );
@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
     height: "100%",
     borderRadius: 10,
     padding: 20,
-    backgroundColor: colorPrimary,
+    backgroundColor: UDACITY_BLUE,
     shadowColor: "rgba(0,0,0,0.5)",
     shadowOffset: {
       width: 0,

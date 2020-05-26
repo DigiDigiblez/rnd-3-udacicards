@@ -10,7 +10,8 @@ import CreateFlashcard from "./components/pages/CreateFlashcard/CreateFlashcard"
 import PlayQuiz from "./components/pages/PlayQuiz/PlayQuiz";
 import ViewDeck from "./components/pages/ViewDeck/ViewDeck";
 import reducer from "./reducers";
-import { colorPrimary, white } from "./utils/colors";
+import { UDACITY_BLUE, WHITE } from "./utils/colors";
+import { SCREEN } from "./utils/contants";
 
 const Stack = createStackNavigator();
 
@@ -28,31 +29,31 @@ export default function App() {
   return (
     <Provider store={createStore(reducer)}>
       <NavigationContainer>
-        <MyStatusBar backgroundColor={colorPrimary} />
+        <MyStatusBar backgroundColor={UDACITY_BLUE} />
         <Stack.Navigator
           screenOptions={{
             headerStyle: {
-              backgroundColor: colorPrimary
+              backgroundColor: UDACITY_BLUE
             },
-            headerTintColor: white
+            headerTintColor: WHITE
           }}
           initialRouteName="Home"
         >
-          <Stack.Screen name="UdaciCards" component={Navigator} />
+          <Stack.Screen name={SCREEN.NAVIGATOR.NAME} component={Navigator} />
           <Stack.Screen
-            name="ViewDeck"
+            name={SCREEN.VIEW_DECK.NAME}
             component={ViewDeck}
-            options={{ title: "View deck" }}
+            options={{ title: SCREEN.VIEW_DECK.TITLE }}
           />
           <Stack.Screen
-            name="CreateFlashcard"
+            name={SCREEN.CREATE_FLASHCARD.NAME}
             component={CreateFlashcard}
-            options={{ title: "Create flashcard" }}
+            options={{ title: SCREEN.CREATE_FLASHCARD.TITLE }}
           />
           <Stack.Screen
-            name="PlayQuiz"
+            name={SCREEN.PLAY_QUIZ.NAME}
             component={PlayQuiz}
-            options={{ title: "Play quiz" }}
+            options={{ title: SCREEN.PLAY_QUIZ.TITLE }}
           />
         </Stack.Navigator>
       </NavigationContainer>

@@ -2,7 +2,13 @@ import React, { Component } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { connect } from "react-redux";
 
-import { colorPrimary, gray, white } from "../../../utils/colors";
+import {
+  UDACITY_BLUE,
+  GRAY,
+  WHITE,
+  CORRECT_GREEN,
+  INCORRECT_RED
+} from "../../../utils/colors";
 import Question from "../../atoms/Question/Question";
 import Button from "../../atoms/Button/Button";
 
@@ -58,9 +64,9 @@ class PlayQuiz extends Component {
           <Button
             style={{
               marginTop: 30,
-              backgroundColor: colorPrimary
+              backgroundColor: UDACITY_BLUE
             }}
-            innerColor={white}
+            innerColor={WHITE}
             text="Create new flashcard"
             onPress={() => this.navigateTo("CreateFlashcard")}
           />
@@ -71,7 +77,10 @@ class PlayQuiz extends Component {
     if (this.state.qIndex > questions.length - 1) {
       return (
         <View style={[styles.container, { alignItems: "center" }]}>
-          <Text style={styles.heading}>Score</Text>
+          <Text style={styles.heading}>
+            You scored{" "}
+            {((this.state.correct / questions.length) * 100).toFixed(2)}%
+          </Text>
           <Text>
             <Text style={styles.heading}>{this.state.correct}</Text>
             <Text
@@ -81,32 +90,33 @@ class PlayQuiz extends Component {
               }}
             >
               {" "}
-              of {questions.length}
+              out of {questions.length}
             </Text>
           </Text>
           <View
             style={{
-              borderTopColor: gray,
+              borderTopColor: GRAY,
               borderTopWidth: 1,
               marginTop: 50,
               paddingTop: 20
             }}
           >
             <Text style={[styles.heading, { color: "darkgray" }]}>
-              Correct Answers : {this.state.correct}
+              ✅ answers : {this.state.correct}
             </Text>
             <Text style={[styles.heading, { color: "darkgray" }]}>
-              Incorrect Answers : {this.state.incorrect}
+              ❌ answers : {this.state.incorrect}
             </Text>
           </View>
 
           <Button
             style={{
               marginTop: 10,
-              borderColor: colorPrimary,
-              borderWidth: 1
+              borderColor: UDACITY_BLUE,
+              borderWidth: 1,
+              width: "90%"
             }}
-            innerColor={colorPrimary}
+            innerColor={UDACITY_BLUE}
             text="Play the quiz again?"
             onPress={() => this.navigateTo("ViewDeck")}
           />
@@ -115,7 +125,8 @@ class PlayQuiz extends Component {
             style={{
               marginTop: 20,
               borderColor: "darkgray",
-              borderWidth: 1
+              borderWidth: 1,
+              width: "90%"
             }}
             innerColor="darkgray"
             text="Back to deck"
@@ -139,7 +150,7 @@ class PlayQuiz extends Component {
 
         <View
           style={{
-            borderTopColor: gray,
+            borderTopColor: GRAY,
             borderTopWidth: 1,
             marginTop: 50,
             paddingTop: 20
@@ -147,17 +158,17 @@ class PlayQuiz extends Component {
         >
           <Button
             style={{
-              backgroundColor: "#32a852",
+              backgroundColor: CORRECT_GREEN,
               margin: 10
             }}
-            innerColor={white}
+            innerColor={WHITE}
             text="Correct!"
             onPress={() => this.onClickedAnswered(true)}
           />
 
           <Button
-            style={{ backgroundColor: "red", margin: 10 }}
-            innerColor={white}
+            style={{ backgroundColor: INCORRECT_RED, margin: 10 }}
+            innerColor={WHITE}
             text="Incorrect..."
             onPress={() => this.onClickedAnswered(false)}
           />
@@ -170,7 +181,7 @@ class PlayQuiz extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: white,
+    backgroundColor: WHITE,
     justifyContent: "center"
   },
   heading: {

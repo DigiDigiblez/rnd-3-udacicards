@@ -10,7 +10,7 @@ import { connect } from "react-redux";
 
 import { addCardEntry } from "../../../actions";
 import { addCardToDeck } from "../../../utils/API";
-import { colorPrimary, gray, white } from "../../../utils/colors";
+import { UDACITY_BLUE, GRAY, WHITE } from "../../../utils/colors";
 
 class CreateFlashcard extends Component {
   state = {
@@ -71,7 +71,7 @@ class CreateFlashcard extends Component {
         <TextInput
           style={styles.textinput}
           placeholder="Enter flashcard question"
-          selectionColor={colorPrimary}
+          selectionColor={UDACITY_BLUE}
           value={this.state.question}
           onChange={({ nativeEvent }) =>
             this.setState({ question: nativeEvent.text })
@@ -87,7 +87,7 @@ class CreateFlashcard extends Component {
         <TextInput
           style={styles.textinput}
           placeholder="Enter flashcard answer"
-          selectionColor={colorPrimary}
+          selectionColor={UDACITY_BLUE}
           value={this.state.answer}
           onChange={({ nativeEvent }) =>
             this.setState({ answer: nativeEvent.text })
@@ -98,7 +98,7 @@ class CreateFlashcard extends Component {
           <Text
             style={{
               textAlign: "center",
-              color: white,
+              color: WHITE,
               fontSize: 17,
               fontWeight: "700",
               textTransform: "uppercase"
@@ -115,7 +115,7 @@ class CreateFlashcard extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: white,
+    backgroundColor: WHITE,
     padding: 7,
     paddingTop: "40%"
   },
@@ -123,12 +123,12 @@ const styles = StyleSheet.create({
     width: "100%",
     textAlign: "center",
     fontSize: 30,
-    color: colorPrimary,
+    color: UDACITY_BLUE,
     fontWeight: "700",
     marginBottom: 20
   },
   textinput: {
-    borderColor: gray,
+    borderColor: GRAY,
     borderWidth: 1,
     borderRadius: 4,
     margin: 20,
@@ -141,7 +141,7 @@ const styles = StyleSheet.create({
     padding: 17,
     borderRadius: 4,
     justifyContent: "center",
-    backgroundColor: colorPrimary
+    backgroundColor: UDACITY_BLUE
   }
 });
 

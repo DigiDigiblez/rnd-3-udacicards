@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 
 import { deleteDeckEntry } from "../../../actions";
 import { clearLocalNotification, deleteDeck } from "../../../utils/API";
-import { colorPrimary, gray, white } from "../../../utils/colors";
+import { UDACITY_BLUE, GRAY, WHITE } from "../../../utils/colors";
 import Button from "../../atoms/Button/Button";
 
 class ViewDeck extends Component {
@@ -34,16 +34,16 @@ class ViewDeck extends Component {
       <View style={styles.container}>
         <Text style={styles.title}>{title}</Text>
 
-        <Text style={[styles.title, { color: gray, fontSize: 20 }]}>
+        <Text style={[styles.title, { color: GRAY, fontSize: 20 }]}>
           {count} {count === 0 || count > 1 ? "flashcards" : "flashcard"}
         </Text>
 
         <Button
           style={{
             marginTop: 30,
-            backgroundColor: colorPrimary
+            backgroundColor: UDACITY_BLUE
           }}
-          innerColor={white}
+          innerColor={WHITE}
           text="Create new flashcard"
           onPress={() => navigation.navigate("CreateFlashcard", { deckId })}
         />
@@ -51,10 +51,10 @@ class ViewDeck extends Component {
         <Button
           style={{
             marginTop: 10,
-            borderColor: colorPrimary,
+            borderColor: UDACITY_BLUE,
             borderWidth: 1
           }}
-          innerColor={colorPrimary}
+          innerColor={UDACITY_BLUE}
           text="Play quiz"
           onPress={() => {
             // cancel today's notification
@@ -66,7 +66,7 @@ class ViewDeck extends Component {
 
         <View
           style={{
-            borderTopColor: gray,
+            borderTopColor: GRAY,
             borderTopWidth: 1,
             marginTop: 20,
             paddingTop: 20
@@ -91,7 +91,7 @@ class ViewDeck extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: white,
+    backgroundColor: WHITE,
     padding: 7,
     paddingTop: "40%"
   },
@@ -99,7 +99,7 @@ const styles = StyleSheet.create({
     width: "100%",
     textAlign: "center",
     fontSize: 35,
-    color: colorPrimary,
+    color: UDACITY_BLUE,
     fontWeight: "700",
     marginBottom: 20
   },

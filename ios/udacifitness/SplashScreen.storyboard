@@ -39,7 +39,7 @@
           >
             <rect key="frame" x="0.0" y="0.0" width="800" height="1600"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" red="1" green="1" BLUE="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
           </imageView>
           <size key="freeformSize" width="800" height="1600"/>
         </viewController>

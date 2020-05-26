@@ -1,15 +1,18 @@
 import React, { Component } from "react";
-import { FlatList, SafeAreaView, StyleSheet, View } from "react-native";
+import { FlatList, SafeAreaView, StyleSheet, Text, View } from "react-native";
 import { connect } from "react-redux";
 
 import { receiveDeckEntries } from "../../../actions";
-import { fetchDeckResults, scheduleNotification } from "../../../utils/API";
+import {
+  fetchDeckResults,
+  scheduleNextDayNotification
+} from "../../../utils/API";
 import Deck from "../../atoms/Deck/Deck";
-import { white } from "../../../utils/colors";
+import { WHITE } from "../../../utils/colors";
 
 class DeckList extends Component {
   componentDidMount() {
-    scheduleNotification();
+    scheduleNextDayNotification();
 
     const { dispatch } = this.props;
 
@@ -27,7 +30,7 @@ class DeckList extends Component {
 
   render() {
     const { decks, data } = this.props;
-    return (
+    return decks.length > 0 ? (
       <View style={styles.container}>
         <SafeAreaView>
           <FlatList
@@ -42,6 +45,10 @@ class DeckList extends Component {
           />
         </SafeAreaView>
       </View>
+    ) : (
+      <View style={styles.textContainer}>
+        <Text style={{ fontSize: 20 }}>No decks have been created</Text>
+      </View>
     );
   }
 }
@@ -49,8 +56,13 @@ class DeckList extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: white,
+    backgroundColor: WHITE,
     padding: 10
+  },
+  textContainer: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center"
   }
 });
 

@@ -28,11 +28,11 @@ const dummyData = {
 
 export const STORAGE_KEY = "UdaciCard:StorageKey";
 
-function setDummyData() {
+const setDummyData = () => {
   AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(dummyData));
   return dummyData;
-}
+};
 
-export function fetchData(results) {
+export const fetchData = results => {
   return results === null ? setDummyData() : JSON.parse(results);
-}
+};
