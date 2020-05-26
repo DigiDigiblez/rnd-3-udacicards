@@ -1,11 +1,12 @@
 import React, { Component } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { Text, View } from "react-native";
 import { connect } from "react-redux";
 
 import { deleteDeckEntry } from "../../../actions";
-import { clearLocalNotification, deleteDeck } from "../../../utils/API";
-import { UDACITY_BLUE, GRAY, WHITE } from "../../../utils/colors";
+import { deleteDeck } from "../../../utils/API";
+import { GRAY, UDACITY_BLUE, WHITE } from "../../../utils/colors";
 import Button from "../../atoms/Button/Button";
+import ViewDeckStyles from "./ViewDeckStyles";
 
 class ViewDeck extends Component {
   deleteThisDeck = deckId => {
@@ -31,29 +32,22 @@ class ViewDeck extends Component {
     const count = questions === undefined ? 0 : questions.length;
 
     return (
-      <View style={styles.container}>
-        <Text style={styles.title}>{title}</Text>
+      <View style={ViewDeckStyles.container}>
+        <Text style={ViewDeckStyles.title}>{title}</Text>
 
-        <Text style={[styles.title, { color: GRAY, fontSize: 20 }]}>
+        <Text style={[ViewDeckStyles.title, { color: GRAY, fontSize: 20 }]}>
           {count} {count === 0 || count > 1 ? "flashcards" : "flashcard"}
         </Text>
 
         <Button
-          style={{
-            marginTop: 30,
-            backgroundColor: UDACITY_BLUE
-          }}
+          style={ViewDeckStyles.createFlashcardBtn}
           innerColor={WHITE}
           text="Create new flashcard"
           onPress={() => navigation.navigate("CreateFlashcard", { deckId })}
         />
 
         <Button
-          style={{
-            marginTop: 10,
-            borderColor: UDACITY_BLUE,
-            borderWidth: 1
-          }}
+          style={ViewDeckStyles.playQuizBtn}
           innerColor={UDACITY_BLUE}
           text="Play quiz"
           onPress={() => {
@@ -61,20 +55,9 @@ class ViewDeck extends Component {
           }}
         />
 
-        <View
-          style={{
-            borderTopColor: GRAY,
-            borderTopWidth: 1,
-            marginTop: 20,
-            paddingTop: 20
-          }}
-        >
+        <View style={ViewDeckStyles.deleteDeckView}>
           <Button
-            style={{
-              marginTop: 20,
-              borderColor: "red",
-              borderWidth: 1
-            }}
+            style={ViewDeckStyles.deleteDeckBtn}
             innerColor="red"
             text="Delete this deck"
             onPress={() => this.deleteThisDeck(deckId)}
@@ -84,31 +67,6 @@ class ViewDeck extends Component {
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: WHITE,
-    padding: 7,
-    paddingTop: "40%"
-  },
-  title: {
-    width: "100%",
-    textAlign: "center",
-    fontSize: 35,
-    color: UDACITY_BLUE,
-    fontWeight: "700",
-    marginBottom: 20
-  },
-  button: {
-    marginLeft: 20,
-    marginRight: 20,
-    padding: 17,
-    borderRadius: 4,
-    justifyContent: "center",
-    marginBottom: 20
-  }
-});
 
 function mapStateToProps(state) {
   return {

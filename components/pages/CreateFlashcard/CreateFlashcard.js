@@ -1,16 +1,11 @@
 import React, { Component } from "react";
-import {
-  StyleSheet,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  View
-} from "react-native";
+import { Text, TextInput, TouchableOpacity, View } from "react-native";
 import { connect } from "react-redux";
 
 import { addCardEntry } from "../../../actions";
 import { addCardToDeck } from "../../../utils/API";
-import { UDACITY_BLUE, GRAY, WHITE } from "../../../utils/colors";
+import { UDACITY_BLUE } from "../../../utils/colors";
+import CreateFlashcardStyles from "./CreateFlashcardStyles";
 
 class CreateFlashcard extends Component {
   state = {
@@ -59,17 +54,17 @@ class CreateFlashcard extends Component {
 
   render() {
     return (
-      <View style={styles.container}>
-        <Text style={styles.title}>Create a new flashcard</Text>
+      <View style={CreateFlashcardStyles.container}>
+        <Text style={CreateFlashcardStyles.title}>Create a new flashcard</Text>
 
         {this.state.hasError[0] && (
-          <Text style={{ color: "red", marginLeft: 30 }}>
+          <Text style={CreateFlashcardStyles.enterFlashcardQuestion}>
             Please enter your flashcard question
           </Text>
         )}
 
         <TextInput
-          style={styles.textinput}
+          style={CreateFlashcardStyles.textinput}
           placeholder="Enter flashcard question"
           selectionColor={UDACITY_BLUE}
           value={this.state.question}
@@ -79,13 +74,13 @@ class CreateFlashcard extends Component {
         />
 
         {this.state.hasError[1] && (
-          <Text style={{ color: "red", marginLeft: 30 }}>
+          <Text style={CreateFlashcardStyles.enterFlashcardAnswer}>
             Please enter your flashcard answer
           </Text>
         )}
 
         <TextInput
-          style={styles.textinput}
+          style={CreateFlashcardStyles.textinput}
           placeholder="Enter flashcard answer"
           selectionColor={UDACITY_BLUE}
           value={this.state.answer}
@@ -94,56 +89,16 @@ class CreateFlashcard extends Component {
           }
         />
 
-        <TouchableOpacity style={styles.addDeck} onPress={this.addCard}>
-          <Text
-            style={{
-              textAlign: "center",
-              color: WHITE,
-              fontSize: 17,
-              fontWeight: "700",
-              textTransform: "uppercase"
-            }}
-          >
-            Create
-          </Text>
+        <TouchableOpacity
+          style={CreateFlashcardStyles.addDeck}
+          onPress={this.addCard}
+        >
+          <Text style={CreateFlashcardStyles.createFlashcard}>Create</Text>
         </TouchableOpacity>
       </View>
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: WHITE,
-    padding: 7,
-    paddingTop: "40%"
-  },
-  title: {
-    width: "100%",
-    textAlign: "center",
-    fontSize: 30,
-    color: UDACITY_BLUE,
-    fontWeight: "700",
-    marginBottom: 20
-  },
-  textinput: {
-    borderColor: GRAY,
-    borderWidth: 1,
-    borderRadius: 4,
-    margin: 20,
-    paddingLeft: 15,
-    fontSize: 17
-  },
-  addDeck: {
-    marginLeft: 20,
-    marginRight: 20,
-    padding: 17,
-    borderRadius: 4,
-    justifyContent: "center",
-    backgroundColor: UDACITY_BLUE
-  }
-});
 
 function mapStateToProps(state) {
   return {

@@ -1,16 +1,11 @@
 import React, { Component } from "react";
-import {
-  StyleSheet,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  View
-} from "react-native";
+import { Text, TextInput, TouchableOpacity, View } from "react-native";
 import { connect } from "react-redux";
 
 import { addEntry } from "../../../actions";
 import { addDeckTitle } from "../../../utils/API";
-import { UDACITY_BLUE, GRAY, WHITE } from "../../../utils/colors";
+import { UDACITY_BLUE } from "../../../utils/colors";
+import CreateDeckStyles from "./CreateDeckStyles";
 
 class CreateDeck extends Component {
   state = {
@@ -39,17 +34,17 @@ class CreateDeck extends Component {
 
   render() {
     return (
-      <View style={styles.container}>
-        <Text style={styles.title}>Create a new deck</Text>
+      <View style={CreateDeckStyles.container}>
+        <Text style={CreateDeckStyles.title}>Create a new deck</Text>
 
         {this.state.hasError && (
-          <Text style={{ color: "red", marginLeft: 30 }}>
+          <Text style={CreateDeckStyles.enterDeckTitleText}>
             Please enter the deck title
           </Text>
         )}
 
         <TextInput
-          style={styles.textinput}
+          style={CreateDeckStyles.deckTitleInput}
           placeholder="Deck title"
           selectionColor={UDACITY_BLUE}
           onChange={({ nativeEvent }) =>
@@ -58,56 +53,16 @@ class CreateDeck extends Component {
           value={this.state.title}
         />
 
-        <TouchableOpacity style={styles.addDeck} onPress={this.addDeck}>
-          <Text
-            style={{
-              textAlign: "center",
-              color: WHITE,
-              fontSize: 17,
-              fontWeight: "700",
-              textTransform: "uppercase"
-            }}
-          >
-            Create deck
-          </Text>
+        <TouchableOpacity
+          style={CreateDeckStyles.addDeck}
+          onPress={this.addDeck}
+        >
+          <Text style={CreateDeckStyles.createDeckText}>Create deck</Text>
         </TouchableOpacity>
       </View>
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: WHITE,
-    padding: 7,
-    paddingTop: "40%"
-  },
-  title: {
-    width: "100%",
-    textAlign: "center",
-    fontSize: 30,
-    color: UDACITY_BLUE,
-    fontWeight: "700",
-    marginBottom: 20
-  },
-  textinput: {
-    borderColor: GRAY,
-    borderWidth: 1,
-    borderRadius: 4,
-    margin: 20,
-    paddingLeft: 15,
-    fontSize: 17
-  },
-  addDeck: {
-    marginLeft: 20,
-    marginRight: 20,
-    padding: 17,
-    borderRadius: 4,
-    justifyContent: "center",
-    backgroundColor: UDACITY_BLUE
-  }
-});
 
 function mapStateToProps(state) {
   return {

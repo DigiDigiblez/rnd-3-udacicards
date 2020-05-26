@@ -1,34 +1,21 @@
 import React from "react";
-import { StyleSheet, Text, TouchableOpacity } from "react-native";
+import { Text, TouchableOpacity } from "react-native";
+
+import ButtonStyles from "./ButtonStyles";
 
 function Button({ onPress, text, innerColor, style, transform }) {
   return (
-    <TouchableOpacity onPress={onPress} style={[styles.button, style]}>
+    <TouchableOpacity onPress={onPress} style={[ButtonStyles.button, style]}>
       <Text
-        style={{
-          textAlign: "center",
-          color: innerColor,
-          fontSize: 17,
-          fontWeight: "700",
-          textTransform: transform && "uppercase"
-        }}
+        style={[
+          ButtonStyles.buttonText,
+          { color: innerColor, textTransform: transform && "uppercase" }
+        ]}
       >
         {text}
       </Text>
     </TouchableOpacity>
   );
 }
-
-const styles = StyleSheet.create({
-  button: {
-    color: "#dac",
-    marginLeft: 20,
-    marginRight: 20,
-    padding: 17,
-    borderRadius: 4,
-    justifyContent: "center",
-    marginBottom: 20
-  }
-});
 
 export default Button;
