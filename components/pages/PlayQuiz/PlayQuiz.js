@@ -16,7 +16,14 @@ class PlayQuiz extends Component {
   state = {
     qIndex: 0,
     correct: 0,
-    incorrect: 0
+    incorrect: 0,
+    cardRef: null
+  };
+
+  setCardRef = cardRef => {
+    this.setState({
+      cardRef
+    });
   };
 
   onClickedAnswered = answer => {
@@ -43,6 +50,16 @@ class PlayQuiz extends Component {
       navigation.goBack();
       navigation.navigate(name, { deckId });
     }
+  };
+
+  handleCorrectAnswer = () => {
+    this.onClickedAnswered(true);
+    this.state.cardRef.current.flip();
+  };
+
+  handleIncorrectAnswer = () => {
+    this.onClickedAnswered(false);
+    this.state.cardRef.current.flip();
   };
 
   render() {
@@ -146,7 +163,10 @@ class PlayQuiz extends Component {
           </Text>
         </Text>
 
-        <Question questionData={questions[this.state.qIndex]} />
+        <Question
+          questionData={questions[this.state.qIndex]}
+          cardRef={ref => this.setCardRef(ref)}
+        />
 
         <View
           style={{
@@ -163,14 +183,14 @@ class PlayQuiz extends Component {
             }}
             innerColor={WHITE}
             text="Correct!"
-            onPress={() => this.onClickedAnswered(true)}
+            onPress={this.handleCorrectAnswer}
           />
 
           <Button
             style={{ backgroundColor: INCORRECT_RED, margin: 10 }}
             innerColor={WHITE}
             text="Incorrect..."
-            onPress={() => this.onClickedAnswered(false)}
+            onPress={this.handleIncorrectAnswer}
           />
         </View>
       </View>

@@ -14,11 +14,12 @@ import Button from "../Button/Button";
 class Question extends Component {
   state = {};
 
-  handleCardFlip = cardToFlip => {
-    if (cardToFlip) {
-      return cardToFlip.flip();
-    }
-  };
+  constructor(props) {
+    super(props);
+
+    this.cardFlipRef = React.createRef();
+    props.cardRef(this.cardFlipRef);
+  }
 
   render() {
     const { questionData } = this.props;
@@ -27,18 +28,20 @@ class Question extends Component {
 
     return (
       <View style={styles.container}>
-        <CardFlip style={styles.cardContainer} ref={card => (this.card = card)}>
+        <CardFlip style={styles.cardContainer} ref={this.cardFlipRef}>
           <TouchableOpacity
             activeOpacity={1}
             style={styles.card}
-            onPress={() => this.card.flip()}
+            // isShowing={cardBeingShown}
+            onPress={() => this.cardFlipRef.current.flip()}
           >
             <Text style={styles.label}>{question}</Text>
           </TouchableOpacity>
           <TouchableOpacity
             activeOpacity={1}
             style={[styles.card, styles.answer]}
-            onPress={() => this.card.flip()}
+            // isShowing={cardBeingShown}
+            onPress={() => this.cardFlipRef.current.flip()}
           >
             <Text style={styles.label}>{answer}</Text>
           </TouchableOpacity>
@@ -57,7 +60,7 @@ class Question extends Component {
           }}
           innerColor={UDACITY_BLUE}
           text="Show answer"
-          onPress={this.handleCardFlip(this.card)}
+          onPress={() => this.cardFlipRef.current.flip()}
         />
       </View>
     );
