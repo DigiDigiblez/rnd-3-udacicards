@@ -17,7 +17,8 @@ class PlayQuiz extends Component {
     qIndex: 0,
     correct: 0,
     incorrect: 0,
-    cardRef: null
+    cardRef: null,
+    cardFlipped: false
   };
 
   setCardRef = cardRef => {
@@ -52,14 +53,32 @@ class PlayQuiz extends Component {
     }
   };
 
+  checkIfFlipped = () => {
+    if (this.state.cardFlipped) {
+      this.state.cardRef.current.flip();
+
+      this.setState({
+        cardFlipped: !this.state.cardFlipped
+      });
+    }
+  };
+
   handleCorrectAnswer = () => {
+    this.checkIfFlipped();
+
     this.onClickedAnswered(true);
-    this.state.cardRef.current.flip();
   };
 
   handleIncorrectAnswer = () => {
+    this.checkIfFlipped();
+
     this.onClickedAnswered(false);
-    this.state.cardRef.current.flip();
+  };
+
+  handleCardFlipped = () => {
+    this.setState({
+      cardFlipped: !this.state.cardFlipped
+    });
   };
 
   render() {
@@ -166,6 +185,7 @@ class PlayQuiz extends Component {
         <Question
           questionData={questions[this.state.qIndex]}
           cardRef={ref => this.setCardRef(ref)}
+          cardFlipped={this.handleCardFlipped}
         />
 
         <View

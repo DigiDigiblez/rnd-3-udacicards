@@ -12,13 +12,20 @@ import { UDACITY_BLUE } from "../../../utils/colors";
 import Button from "../Button/Button";
 
 class Question extends Component {
-  state = {};
+  state = {
+    frontSideUp: true
+  };
 
   constructor(props) {
     super(props);
 
     this.cardFlipRef = React.createRef();
     props.cardRef(this.cardFlipRef);
+  }
+
+  handleCardFlip() {
+    this.cardFlipRef.current.flip();
+    this.props.cardFlipped();
   }
 
   render() {
@@ -32,16 +39,16 @@ class Question extends Component {
           <TouchableOpacity
             activeOpacity={1}
             style={styles.card}
-            // isShowing={cardBeingShown}
-            onPress={() => this.cardFlipRef.current.flip()}
+            isShowing={this.state.frontSideUp}
+            onPress={() => this.handleCardFlip()}
           >
             <Text style={styles.label}>{question}</Text>
           </TouchableOpacity>
           <TouchableOpacity
             activeOpacity={1}
             style={[styles.card, styles.answer]}
-            // isShowing={cardBeingShown}
-            onPress={() => this.cardFlipRef.current.flip()}
+            isShowing={!this.state.frontSideUp}
+            onPress={() => this.handleCardFlip()}
           >
             <Text style={styles.label}>{answer}</Text>
           </TouchableOpacity>
@@ -60,7 +67,7 @@ class Question extends Component {
           }}
           innerColor={UDACITY_BLUE}
           text="Show answer"
-          onPress={() => this.cardFlipRef.current.flip()}
+          onPress={() => this.handleCardFlip()}
         />
       </View>
     );
