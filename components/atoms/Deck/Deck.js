@@ -6,7 +6,7 @@ import { Text, TouchableHighlight, View } from "react-native";
 import { UDACITY_BLUE, WHITE } from "../../../utils/colors";
 import DeckStyles from "./DeckStyles";
 
-export default function Deck({ deck, onPress }) {
+const Deck = ({ deck, onPress }) => {
   const { title, questions } = deck;
   const count = questions.length;
 
@@ -27,4 +27,6 @@ export default function Deck({ deck, onPress }) {
       </TouchableHighlight>
     </View>
   );
-}
+};
+
+export default Deck;

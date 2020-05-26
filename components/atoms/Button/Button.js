@@ -3,7 +3,7 @@ import { Text, TouchableOpacity } from "react-native";
 
 import ButtonStyles from "./ButtonStyles";
 
-function Button({ onPress, text, innerColor, style, transform }) {
+const Button = ({ onPress, text, innerColor, style, transform }) => {
   return (
     <TouchableOpacity onPress={onPress} style={[ButtonStyles.button, style]}>
       <Text
@@ -16,6 +16,6 @@ function Button({ onPress, text, innerColor, style, transform }) {
       </Text>
     </TouchableOpacity>
   );
-}
+};
 
 export default Button;

@@ -8,32 +8,30 @@ import DeckList from "../DeckList/DeckList";
 
 const Tab = createBottomTabNavigator();
 
-class Navigator extends React.Component {
-  render() {
-    return (
-      <Tab.Navigator
-        screenOptions={({ route }) => ({
-          tabBarIcon: ({ focused, color, size }) => {
-            let iconName = "md-add-circle";
+const Navigator = () => {
+  return (
+    <Tab.Navigator
+      screenOptions={({ route }) => ({
+        tabBarIcon: ({ focused, color, size }) => {
+          let iconName = "md-add-circle";
 
-            if (route.name === "All decks") {
-              iconName = "md-albums";
-            }
-
-            return <Ionicons name={iconName} size={size} color={color} />;
+          if (route.name === "All decks") {
+            iconName = "md-albums";
           }
-        })}
-        tabBarOptions={{
-          activeTintColor: UDACITY_BLUE,
-          inactiveTintColor: GRAY
-        }}
-        initialRouteName="DeckList"
-      >
-        <Tab.Screen name="All decks" component={DeckList} />
-        <Tab.Screen name="Create new deck" component={CreateDeck} />
-      </Tab.Navigator>
-    );
-  }
-}
+
+          return <Ionicons name={iconName} size={size} color={color} />;
+        }
+      })}
+      tabBarOptions={{
+        activeTintColor: UDACITY_BLUE,
+        inactiveTintColor: GRAY
+      }}
+      initialRouteName="DeckList"
+    >
+      <Tab.Screen name="All decks" component={DeckList} />
+      <Tab.Screen name="Create new deck" component={CreateDeck} />
+    </Tab.Navigator>
+  );
+};
 
 export default Navigator;
