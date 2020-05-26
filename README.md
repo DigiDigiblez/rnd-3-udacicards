@@ -13,7 +13,7 @@ For IDEs like WebStorm and PyCharm, you can go to `Preferences | Tools | File Wa
 #### Setup Front End
 This app uses `Yarn` as it's package manager. Navigate to the frontend directory and use `yarn` to install the dependencies in the `package.json` file. This will generate a `yarn.lock` file. It's advisable to commit this file as and when it is updated.
 
-Once the dependencies are installed, run `yarn start` to run the front end on `port 3000`.
+Once the dependencies are installed, run `yarn expo` to run the app on port `19001`, while using the Expo mobile app to launch this application on a mobile device.
 
 #### Acknowledgements
 - God and the Lord Jesus Christ, for helping me through this project! ❤️ ❤️ ❤️
