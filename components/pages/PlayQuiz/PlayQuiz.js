@@ -87,7 +87,7 @@ class PlayQuiz extends Component {
 
     const { questions } = state[deckId];
 
-    if (questions.length == 0) {
+    if (questions.length === 0) {
       return (
         <View style={[PlayQuizStyles.container, { alignItems: "center" }]}>
           <Text style={PlayQuizStyles.noFlashcardsText}>

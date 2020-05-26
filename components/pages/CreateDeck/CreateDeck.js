@@ -32,6 +32,12 @@ class CreateDeck extends Component {
     }
   };
 
+  handleChange = (value, label) => {
+    this.setState({
+      [label]: value
+    });
+  };
+
   render() {
     return (
       <View style={CreateDeckStyles.container}>
@@ -48,7 +54,7 @@ class CreateDeck extends Component {
           placeholder="Deck title"
           selectionColor={UDACITY_BLUE}
           onChange={({ nativeEvent }) =>
-            this.setState({ title: nativeEvent.text })
+            this.handleChange(nativeEvent.text, "title")
           }
           value={this.state.title}
         />

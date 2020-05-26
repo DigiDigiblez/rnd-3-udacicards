@@ -52,6 +52,12 @@ class CreateFlashcard extends Component {
     }
   };
 
+  handleChange = (value, label) => {
+    this.setState({
+      [label]: value
+    });
+  };
+
   render() {
     return (
       <View style={CreateFlashcardStyles.container}>
@@ -69,7 +75,7 @@ class CreateFlashcard extends Component {
           selectionColor={UDACITY_BLUE}
           value={this.state.question}
           onChange={({ nativeEvent }) =>
-            this.setState({ question: nativeEvent.text })
+            this.handleChange(nativeEvent.text, "question")
           }
         />
 
@@ -85,7 +91,7 @@ class CreateFlashcard extends Component {
           selectionColor={UDACITY_BLUE}
           value={this.state.answer}
           onChange={({ nativeEvent }) =>
-            this.setState({ answer: nativeEvent.text })
+            this.handleChange(nativeEvent.text, "answer")
           }
         />
 
