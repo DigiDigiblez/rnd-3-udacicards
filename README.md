@@ -37,31 +37,31 @@ Opinionated reformatting tool JavaScript
 
 #### Screenshots
 **No decks created**
-![No decks created](res/screenshots/screenshot-1.jpg)
+![No decks created](res/screenshots/screenshot-1.png)
 
 **Creating a new deck**
-![Screenshot 3](res/screenshots/screenshot-2.jpg)
+![Screenshot 3](res/screenshots/screenshot-2.png)
 
 **One deck created**
-![Screenshot 4](res/screenshots/screenshot-3.jpg)
+![Screenshot 4](res/screenshots/screenshot-3.png)
 
 **Deck with no flashcards**
-![Screenshot 5](res/screenshots/screenshot-4.jpg)
+![Screenshot 5](res/screenshots/screenshot-4.png)
 
 **Creating a new flashcard**
-![Screenshot 6](res/screenshots/screenshot-5.jpg)
+![Screenshot 6](res/screenshots/screenshot-5.png)
 
 **Deck with one flashcard**
-![Screenshot 7](res/screenshots/screenshot-6.jpg)
+![Screenshot 7](res/screenshots/screenshot-6.png)
 
 **Playing quiz- flashcard question**
-![Screenshot 8](res/screenshots/screenshot-7.jpg)
+![Screenshot 8](res/screenshots/screenshot-7.png)
 
 **Playing quiz- flashcard answer**
-![Screenshot 8](res/screenshots/screenshot-8.jpg)
+![Screenshot 8](res/screenshots/screenshot-8.png)
 
 **Quiz outcome- using extra flashcards**
-![Screenshot 8](res/screenshots/screenshot-9.jpg)
+![Screenshot 8](res/screenshots/screenshot-9.png)
 
 
 #### Acknowledgements
