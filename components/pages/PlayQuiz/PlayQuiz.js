@@ -11,6 +11,10 @@ import {
 } from "../../../utils/colors";
 import Question from "../../atoms/Question/Question";
 import Button from "../../atoms/Button/Button";
+import {
+  clearLocalNotification,
+  scheduleNextDayNotification
+} from "../../../utils/API";
 
 class PlayQuiz extends Component {
   state = {
@@ -111,6 +115,9 @@ class PlayQuiz extends Component {
     }
 
     if (this.state.qIndex > questions.length - 1) {
+      // Cancel current notifications as user finished quiz and setup a new one for tomorrow
+      clearLocalNotification().then(scheduleNextDayNotification());
+
       return (
         <View style={[styles.container, { alignItems: "center" }]}>
           <Text style={styles.heading}>

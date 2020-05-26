@@ -3,17 +3,12 @@ import { FlatList, SafeAreaView, StyleSheet, Text, View } from "react-native";
 import { connect } from "react-redux";
 
 import { receiveDeckEntries } from "../../../actions";
-import {
-  fetchDeckResults,
-  scheduleNextDayNotification
-} from "../../../utils/API";
+import { fetchDeckResults } from "../../../utils/API";
 import Deck from "../../atoms/Deck/Deck";
 import { WHITE } from "../../../utils/colors";
 
 class DeckList extends Component {
   componentDidMount() {
-    scheduleNextDayNotification();
-
     const { dispatch } = this.props;
 
     fetchDeckResults().then(data => {

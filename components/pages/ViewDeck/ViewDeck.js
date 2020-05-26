@@ -57,9 +57,6 @@ class ViewDeck extends Component {
           innerColor={UDACITY_BLUE}
           text="Play quiz"
           onPress={() => {
-            // cancel today's notification
-            clearLocalNotification().then(() => null);
-
             navigation.navigate("PlayQuiz", { deckId });
           }}
         />

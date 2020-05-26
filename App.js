@@ -1,6 +1,6 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
-import React from "react";
+import React, { useEffect } from "react";
 import { StatusBar, View } from "react-native";
 import { Provider } from "react-redux";
 import { createStore } from "redux";
@@ -12,6 +12,7 @@ import ViewDeck from "./components/pages/ViewDeck/ViewDeck";
 import reducer from "./reducers";
 import { UDACITY_BLUE, WHITE } from "./utils/colors";
 import { SCREEN } from "./utils/contants";
+import { scheduleNextDayNotification } from "./utils/API";
 
 const Stack = createStackNavigator();
 
@@ -26,6 +27,10 @@ function MyStatusBar({ backgroundColor, props }) {
 }
 
 export default function App() {
+  useEffect(() => {
+    scheduleNextDayNotification();
+  }, []);
+
   return (
     <Provider store={createStore(reducer)}>
       <NavigationContainer>

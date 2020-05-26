@@ -1,4 +1,4 @@
-export const NOTIFICATION_KEY = "udacicard-notification";
+export const NOTIFICATION_KEY = "udacicard:notifications";
 
 export const SCREEN = {
   NAVIGATOR: {

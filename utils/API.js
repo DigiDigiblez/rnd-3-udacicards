@@ -1,4 +1,5 @@
 import { Notifications } from "expo";
+import * as Permissions from "expo-permissions";
 import { AsyncStorage } from "react-native";
 
 import { fetchData, STORAGE_KEY } from "./_DATA";
@@ -41,43 +42,56 @@ export const deleteDeck = key =>
     AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(data));
   });
 
-export const scheduleNextDayNotification = () =>
+export const createNotification = () => ({
+  title: "UdaciCards - Quiz Time!",
+  message: "You didn't quiz yourself today :(",
+  ios: {
+    sound: true
+  },
+  android: {
+    sound: true,
+    priority: "high",
+    sticky: false,
+    vibrate: true
+  }
+});
+
+export const clearLocalNotification = () => {
+  console.log("clearLocalNotification");
+
+  return AsyncStorage.removeItem(NOTIFICATION_KEY).then(
+    Notifications.cancelAllScheduledNotificationsAsync
+  );
+};
+
+export function scheduleNextDayNotification() {
+  console.log("scheduleNextDayNotification");
   AsyncStorage.getItem(NOTIFICATION_KEY)
     .then(JSON.parse)
     .then(data => {
-      Notifications.cancelAllScheduledNotificationsAsync().catch(err =>
-        console.log(err)
-      );
+      // Notification not been set up
+      if (data === null) {
+        // Request permission from user to schedule notifications
+        Permissions.askAsync(Permissions.NOTIFICATIONS).then(({ status }) => {
+          if (status === "granted") {
+            // Cancel any previously scheduled notifications.
+            Notifications.cancelAllScheduledNotificationsAsync();
 
-      // Notification in one day time
-      const tomorrow = new Date();
-      tomorrow.setDate(tomorrow.getDate() + 1);
-      tomorrow.setHours(18);
-      tomorrow.setMinutes(0);
+            const tomorrow = new Date();
+            tomorrow.setDate(tomorrow.getDate() + 1);
+            tomorrow.setHours(8);
+            tomorrow.setMinutes(0);
 
-      // const instant = new Date(); // TODO - UDACITY REVIEWER EASY CHECK ❤️
+            console.log(`scheduleLocalNotification ${tomorrow}`);
+            Notifications.scheduleLocalNotificationAsync(createNotification(), {
+              time: tomorrow,
+              repeat: "day"
+            });
 
-      Notifications.scheduleLocalNotificationAsync({
-        title: "Udacity Flashcards",
-        message: "You didn't quiz yourself today :(",
-        date: tomorrow,
-        // date: instant, // TODO - UDACITY REVIEWER EASY CHECK ❤️
-        repeat: "day",
-        ios: {
-          sound: true
-        },
-        android: {
-          sound: true,
-          priority: "high",
-          sticky: false,
-          vibrate: true
-        }
-      }).catch(err => console.log(err));
-
-      AsyncStorage.setItem(NOTIFICATION_KEY, JSON.stringify(true));
+            // Ensure local notification key is setup in storage.
+            AsyncStorage.setItem(NOTIFICATION_KEY, JSON.stringify(true));
+          }
+        });
+      }
     });
-
-export const clearLocalNotification = async () =>
-  AsyncStorage.removeItem(NOTIFICATION_KEY).then(
-    await scheduleNextDayNotification()
-  );
+}
