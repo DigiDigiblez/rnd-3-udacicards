@@ -9,8 +9,17 @@ import {
 import CardFlip from "react-native-card-flip";
 
 import { UDACITY_BLUE } from "../../../utils/colors";
+import Button from "../Button/Button";
 
-export default class Question extends Component {
+class Question extends Component {
+  state = {};
+
+  handleCardFlip = cardToFlip => {
+    if (cardToFlip) {
+      return cardToFlip.flip();
+    }
+  };
+
   render() {
     const { questionData } = this.props;
 
@@ -38,6 +47,18 @@ export default class Question extends Component {
         <Text style={{ color: "lightgray", margin: 10 }}>
           Tap the flashcard to flip it!
         </Text>
+
+        <Button
+          style={{
+            marginTop: 10,
+            borderColor: UDACITY_BLUE,
+            borderWidth: 1,
+            width: "90%"
+          }}
+          innerColor={UDACITY_BLUE}
+          text="Show answer"
+          onPress={this.handleCardFlip(this.card)}
+        />
       </View>
     );
   }
@@ -77,3 +98,5 @@ const styles = StyleSheet.create({
     backgroundColor: "transparent"
   }
 });
+
+export default Question;
