@@ -1,3 +1,4 @@
+import { Ionicons } from "@expo/vector-icons";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import React from "react";
@@ -5,10 +6,10 @@ import { StatusBar, View } from "react-native";
 import { Provider } from "react-redux";
 import { createStore } from "redux";
 
-import AddCard from "./components/AddCard";
-import BottomNavigation from "./components/BottomNavigation";
-import DeckView from "./components/DeckView";
-import TakeQuiz from "./components/TakeQuiz";
+import Navigator from "./components/molecules/Navigator/Navigator";
+import CreateFlashcard from "./components/pages/CreateFlashcard/CreateFlashcard";
+import PlayQuiz from "./components/pages/PlayQuiz/PlayQuiz";
+import ViewDeck from "./components/pages/ViewDeck/ViewDeck";
 import reducer from "./reducers";
 import { colorPrimary, white } from "./utils/colors";
 
@@ -38,21 +39,21 @@ export default function App() {
           }}
           initialRouteName="Home"
         >
-          <Stack.Screen name="UdaciCards" component={BottomNavigation} />
+          <Stack.Screen name="UdaciCards" component={Navigator} />
           <Stack.Screen
-            name="DeckView"
-            component={DeckView}
-            options={{ title: "Deck View" }}
+            name="ViewDeck"
+            component={ViewDeck}
+            options={{ title: "View deck" }}
           />
           <Stack.Screen
-            name="AddCard"
-            component={AddCard}
-            options={{ title: "Add Flashcard" }}
+            name="CreateFlashcard"
+            component={CreateFlashcard}
+            options={{ title: "Create flashcard" }}
           />
           <Stack.Screen
-            name="TakeQuiz"
-            component={TakeQuiz}
-            options={{ title: "Take Quiz" }}
+            name="PlayQuiz"
+            component={PlayQuiz}
+            options={{ title: "Play quiz" }}
           />
         </Stack.Navigator>
       </NavigationContainer>
